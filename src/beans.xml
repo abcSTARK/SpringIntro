@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd 
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/util
+    http://www.springframework.org/schema/util/spring-util.xsd
+http://www.springframework.org/schema/tx 
+    http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+<context:component-scan base-package="pojo" ></context:component-scan>
+	<bean id="emp" class = "pojo.MyEmployee" lazy-init="true">
+		<property name="empID" value="200"></property>
+		<property name="empName" value="SG"></property>
+	</bean>
+	<bean id="emp_const" class = "pojo.MyEmployee" scope="prototype">
+		<!--<constructor-arg value="my name" index="1"></constructor-arg> -->
+		<!--<constructor-arg value="my name" name="empName"></constructor-arg> -->
+		<constructor-arg value="my name" type="java.lang.String"></constructor-arg>
+		<constructor-arg value="10"></constructor-arg>
+	</bean>
+
+	<bean id="dept" class = "pojo.Department" autowire="byName" >
+		<constructor-arg value="development" name="deptName"></constructor-arg>
+		<constructor-arg value="300" name="deptID"></constructor-arg>
+		<!-- <constructor-arg ref="emp_const" name="emp"></constructor-arg> -->
+	</bean>
+
+	<bean id="stu" class="pojo.Student">
+		<property name="rollNo" value="1"></property>
+		<property name="name" value="student124"></property>
+	</bean>
+
+
+</beans>
